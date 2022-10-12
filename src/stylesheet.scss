@@ -1,0 +1,133 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+body, html {
+
+    margin:0;
+    padding:0;
+    background-color: #E8E8E8; 
+}
+.col {
+
+    margin: 5px;
+}
+.test {
+    background-color: white;
+
+}
+.feed-content {
+    background-color: white;
+}
+
+.friends-container {
+    background-color: white;
+}
+.head {
+    background-color: #0A66C2;
+    margin: 5px;
+
+}
+.container {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+#forsidebilde {
+    object-fit: cover;
+    height: 40%;
+    max-height: 250px;
+    width: 100%;
+}
+#profile-picture {
+    z-index: 10;
+    margin-top: -50px;
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    border-radius:50%;
+
+}
+#nav-icon {
+    width: 60px;
+}
+
+#feed-profile-pic {
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius:50%;
+}
+.p-feed {
+     margin-top: 0.0em; margin-bottom: 0em; 
+}
+#feed-picture {
+    width: 100%;
+}
+#find-friends-picutre {
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius:50%;
+}
+.input-post {
+    width: 80%;
+}
+#input-post {
+    width: 100%;
+}
+.find-friends {
+    border: solid;
+    height: 70px;
+}
+.find-friends p {
+    font-size: 12px;
+}
+.p-2 {
+    margin-top: 0;
+}
+
+.post-comment {
+    background-color: #ECECEC;
+}
+.username {
+    display: none;
+}
+
+.remove_btn{
+    display:none
+}
+
+.acc_created_success{
+    color:white;
+
+}
+
+.bg-danger{
+    margin: 10px;
+    color:white;
+
+
+}
+
+.bg-danger > *{
+    font-size: 1rem;
+}
+
+@media screen and (min-width: 800px){
+    .sticky-top { top: 0.5em; }
+.positioning {top: 103px;}
+}
+@media screen and (max-width: 990px) {
+    .testing {
+        display: flex;
+        flex-direction: column-reverse;
+        
+    }
+}

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/stylesheet.css" />
-
+    
     <title>Homepage</title>
   </head>
   <body>
@@ -43,15 +43,15 @@
         </div>
       </div>
   
-
+      
       
       <div class="row testing">
         <div class="col col-lg-3 sticky-top">
           <div class="sticky-top positioning">
 
           
-          <div class="test rounded">
-            
+            <div class="test rounded">
+              
             <img src="/img/forsidebilde.jpg" id="forsidebilde" />
             <span id="avatar-img"></span>
             <h1 class="user_name"></h1>
@@ -60,8 +60,8 @@
             <p id="following-count"></p>
           </div>
         </div>
-        </div>
-
+      </div>
+      
         <div class="col container-content">
           <div class="feed-content rounded">
 
@@ -74,46 +74,53 @@
 
 </div>
 
-<div class="input-post justify-content-center">
+<!-- <div class="input-post justify-content-center">
   <input type="text" placeholder="title" id="input-post">
   <input type="text" placeholder="mediaURL" id="input-post">
   <input type="text" placeholder="what are you thinking about?" id="input-post">
 
 <div class="text-end">
-<button class="m-1 btn btn-primary">POST</button>
+<button class="m-1 btn btn-primary">POST</button> -->
+<div class="post-content-container card form-group my-5" >
+  <form class="d-flex flex-column post_form" action="">
+    <input class="form-control input_headline" type="text" placeholder = "title">
+    <input class="form-control input_image" type="text" placeholder="Image">
+    <textarea class="form-control input_body" rows="3" placeholder="Whats on your mind?"></textarea>
+    <button class="btn btn-primary input_btn_submit" type="submit">Create Post</button>
+  </form>
 </div>
+<div class="filter_container">
+  <button type="button" class="btn btn-primary btn-sm filter_asc">Sort newest first</button>
+  <button type="button" class="btn btn-primary btn-sm filter_dsc">Sort oldest first</button>
 </div>
 
 <div class="text-end">
   <p>test</p>
 </div>
 </div>
-<div class="container-search">
-  
-</div>
 <div class="d-flex justify-content-center">
   <button class=" m-1 btn btn-primary" id="explore">explore</button>
   <button class=" m-1 btn btn-secondary" id="explore">friends</button>
   <button class=" m-1 btn btn-secondary" id="explore">latest</button>
- </div>
-          <div class="feed-content rounded">
-
-                          <div class="d-flex justify-content-between">
-                            <div class="content-left d-flex">
-                                       <img src="/img/profile.jfif" id="feed-profile-pic" />
-              <div class="div">
-                <p class="text-start p-feed ms-3">Ola Nordmann</p>
-                <p class="text-start p-feed ms-3">Front-end developer</p>
+</div>
+<div class="feed-content rounded card my-5">
+  
+  <div class="d-flex justify-content-between">
+    <div class="content-left d-flex">
+      <img src="/img/profile.jfif" id="feed-profile-pic" />
+      <div class="div">
+        <p class="text-start p-feed ms-3">Ola Nordmann</p>
+        <p class="text-start p-feed ms-3">Front-end developer</p>
               </div>
-                            </div>
-                            <div class="content-right">
-                                   
-              <div class="align-self-end">
-                <button class="btn btn-warning" id="btnEdit">edit</button><button class="btn btn-danger" id="btnDelete">Delete</button>
-              </div>
-                            </div>
-
             </div>
+                            <div class="content-right">
+                              
+                              <div class="align-self-end">
+                                <button class="btn btn-warning" id="btnEdit">edit</button><button class="btn btn-danger" id="btnDelete">Delete</button>
+              </div>
+                            </div>
+
+                          </div>
            
             <img src="/img/programming.jpg" id="feed-picture">
 
@@ -126,7 +133,7 @@
                     <p class="text-start p-feed ms-3">${user_name}</p>
                     <p class="text-start p-feed ms-3">Front-end developer</p>
                   </div>
-                 
+                  
                 </div>
                 <input type="text" placeholder="mediaURL" id="input-post">
                 <button id="btn_postComment">Comment</button>
@@ -161,11 +168,11 @@
 
             </div>
             </div>
-
-
-
-          <div class="feed-content rounded">
-            <p>
+            
+            
+            
+            <div class="feed-content rounded">
+              <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex
               laborum quidem minus esse doloribus! Quasi ducimus, cumque hic
               facilis, quidem reiciendis necessitatibus labore laudantium
@@ -182,8 +189,8 @@
             </form>
             <div class="text-end">
               <button class="m-1">POST</button>
-              </div>
-
+            </div>
+            
           </div>
           <div class="feed-content rounded">
             <p class="text-start">NAME</p>
@@ -202,10 +209,10 @@
           <div class="sticky-top positioning">
 
           
-          <div class="friends-container rounded">
-            <h2>Find friends</h2>
-            <div class="d-flex find-friends m-1">
-              <div class="p-2">
+            <div class="friends-container rounded">
+              <h2>Find friends</h2>
+              <div class="d-flex find-friends m-1">
+                <div class="p-2">
                 <img src="/img/profile-kari.jpeg" id="find-friends-picutre">
               </div>
               <div class="p-2">
@@ -237,13 +244,15 @@
           </div>
         </div>
       </div>
-      </div>
     </div>
   </div>
+  </div>
 </div>
-    <a href="/profile.html"> <h1>PROFIL</h1></a>
-    <a href="/login.html"> <h1>Login</h1></a>
-    <a href="/apitest.html"> <h1>API</h1></a>
-  </body>
-  <script src="/script/script.js"></script>
-</html>
+<a href="/profile.html"> <h1>PROFIL</h1></a>
+<a href="/login.html"> <h1>Login</h1></a>
+<a href="/apitest.html"> <h1>API</h1></a>
+</body>
+
+ <script src="./script/script.js"></script>
+  </html>
+  

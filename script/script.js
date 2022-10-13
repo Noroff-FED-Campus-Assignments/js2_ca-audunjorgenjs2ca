@@ -9,11 +9,12 @@ window.onresize = function () {
 const token = localStorage.getItem("accessToken");
 const user_name = localStorage.getItem("username");
 const email = localStorage.getItem("email");
-
+console.log(user_name);
 const container = document.querySelector(".container-content");
 const url = "https://nf-api.onrender.com/api/v1";
 
-const DOMUsername = document.querySelector(".username");
+const DOMUsername = document.querySelector(".user_name");
+
 DOMUsername.innerHTML = user_name;
 const DOMAvatar = document.querySelector("#avatar-img");
 DOMAvatar.innerHTML = `<img src="/img/profile.jfif" id="profile-picture" "id="profile-picture">`
@@ -61,7 +62,6 @@ async function handleAPI() {
 
       let icon = "";
       if (result[i].author.name === user_name) {
-        console.log("INNE");
         icon = `<button class="edit_btn btn btn-warning" id="${result[i].id}">edit</button><button class="delete_btn btn btn-danger" id="${result[i].id}">Delete</button>`
       }
       container.innerHTML += 
@@ -92,7 +92,6 @@ ${icon}
           </div>
           <span id ="comment_${result[i].id}"></span>
           </div>`;
-          console.log(icon);
     }
   } catch (e) {
   } finally {
@@ -321,27 +320,56 @@ function deletePost(postid) {
   async function findFriends() {
     try{
       const DOMFindfriends = document.querySelector(".friends-container");
-      const response = await fetch(`${url}/social/profiles`, options);
+      const response = await fetch(`${url}/social/profiles?_followers=true`, options);
       const result = await response.json();
       console.log(result);
+      console.log("før");
+      let matched;
+      //console.log(result[0].follwers[0].name);
+      console.log("etter");
       for( let i = 0; i < result.length; i++) {
-        const profile_name = result[i].name;
-        const profile_media = result[i].avatar;
-        DOMFindfriends.innerHTML += `            <div class="d-flex find-friends m-1">
-        <div class="p-2">
-          <img src="${profile_media}"  onerror="this.src = '/img/profile.jfif';" id="find-friends-picutre">
-        </div>
-        <div class="p-2">
-          <p>${profile_name}</p>
-          
-        </div>
-        <button class="m-2 btn btn-info btnConnect" id="${profile_name}">Connect</button>
-      </div>`;
-          if(i === 5) {
-        break;
-      }
-      }
+ 
+       // console.log(result[i].followers.length);
     
+        for(let j = 0; j < result[i].followers.length; j++) {
+          console.log(matched);
+          console.log(result[i].followers[j].name);
+          matched = false;
+              if(result[i].followers[j].name === user_name) {
+                  //console.log(result[i].followers[j].name);
+                  matched = true;
+                console.log("inneeeeeeee");
+                //console.log(matched);
+              }else {
+                  matched = false;
+                }
+                //console.log(result[i].name);
+                console.log(matched);
+                console.log(result[i].name);
+
+        }
+        if(!matched) {
+          console.log(result[i].name);
+          console.log("test");
+            DOMFindfriends.innerHTML += `<div class="d-flex find-friends m-1">
+            <div class="p-2">
+              <img src="${result[i].avatar}"  onerror="this.src = '/img/profile.jfif';" id="find-friends-picutre">
+            </div>
+            <div class="p-2">
+              <p>${result[i].name}</p>
+              
+            </div>
+            <button class="m-2 btn btn-info btnConnect" id="${result[i].name}">Connect</button>
+          </div>`;
+          if(i > 20) {
+            break;
+          }
+          
+         
+        }
+        //console.log(user_name);
+    
+    }
     } catch(e) {
 
     } finally{4
@@ -361,16 +389,24 @@ function deletePost(postid) {
 
 function followUser(followName) {
     try {
+      const userName = `${user_name}`;
         //url fetch and PUT method
    fetch(`${url}/social/profiles/${followName}/follow`, {
     method: 'PUT', 
-   options
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'content-Type': 'application/json',
+    },
+    //data in the body
+    body: JSON.stringify( {
+      name : followName,
+    })
 
   })
     .then((response) => {
       if (response.ok === true) {
-        //reloads page if comment is posted to update the display
-       document.location.reload (true); 
+        //SUCCESS
+       console.log("nice");
       }
       return response.json();
     })
@@ -380,9 +416,89 @@ function followUser(followName) {
     .catch(error => console.log("error",  error));
   }
 catch(e) {
-      console.llog(e);
+      console.log(e);
     } finally {
     } 
 
     
   }
+
+const inputSearch = document.querySelector(".input_search");
+
+inputSearch.addEventListener("keyup", () => {
+
+  console.log(inputSearch.value);
+  apiSearch(inputSearch.value);
+});
+let searchArray = [];
+async function apiSearch(searchWord) {
+  try {
+    
+    const response = await fetch(
+      `${url}/social/posts/?_author=true&_comments=true&_reactions=true`,
+      options
+    );
+    const result = await response.json();
+    console.log(result);
+    for (let i = 0; i < result.length; i++) {
+      let avatar = result[i].author.avatar;
+      console.log(searchWord.length);
+      console.log(result[i].title);
+      if (result[i].author.avatar === "") {
+        avatar = `/img/profile.jfif"`;
+      }
+      console.log(result[i].title);
+      if(result[i].title === searchWord) {
+        console.log("FUNNET");
+        searchArray.push(result[i]);
+        if( i === 3) {
+          break;
+        }
+      } else {
+        //searchArray = [];
+      }
+      
+     
+    }
+  } catch (e) {
+  } finally {
+    console.log(searchArray);
+    const search_container = document.querySelector(".container-search");
+   console.log(searchArray.length);
+   for(let i = 0; i <searchArray.length; i++) {
+   search_container.innerHTML += 
+
+    `<div class="feed-content rounded" id="post_${searchArray[i].id}">
+    <div class="d-flex justify-content-between">
+    <div class="content-left d-flex">
+    <img src="${searchArray[i].author.avatar}" onerror="this.src = '/img/profile.jfif';" id="feed-profile-pic" />
+<div class="div">
+<p class="text-start p-feed ms-3">${searchArray[i].author.name}</p>
+<p class="text-start p-feed ms-3">Front-end developer</p>
+</div>
+    </div>
+    <div class="content-right">
+           
+<div class="align-self-end"">
+</div>
+    </div>
+
+</div>
+    <h5 class="text-start">${searchArray[i].title}</h5>
+    <p class="text-start">${searchArray[i].body}</p>
+    <img src="${searchArray[i].media}" id="feed-picture">
+
+    <div class="text-end">
+    <p class="view_comments" id="${searchArray[i].id}">${searchArray[i]._count.comments} comments</p>
+
+    </div>
+    <span id ="comment_${searchArray[i].id}"></span>
+    </div>`;
+}
+
+   }
+    
+  
+}
+
+

@@ -112,10 +112,21 @@ $grid-breakpoints: (
 .bg-danger{
     margin: 10px;
     color:white;
+
 }
 
 .bg-danger > *{
     font-size: 1rem;
+}
+
+
+.container-search {
+    margin-top: -250px;
+    background-color: blue;
+    z-index: 2;
+    position: fixed;
+
+    
 }
 
 @media screen and (min-width: 800px){

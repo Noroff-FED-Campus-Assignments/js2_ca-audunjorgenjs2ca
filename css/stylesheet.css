@@ -10879,6 +10879,14 @@ body, html {
   font-size: 1rem;
 }
 
+
+.container-search {
+  margin-top: -250px;
+  background-color: blue;
+  z-index: 2;
+  position: fixed;
+}
+
 @media screen and (min-width: 800px) {
   .sticky-top {
     top: 0.5em;

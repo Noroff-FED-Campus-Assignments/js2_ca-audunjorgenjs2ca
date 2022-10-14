@@ -22,8 +22,10 @@ body, html {
     background-color: white;
 }
 .head {
-    background-color: #0A66C2;
+    border: solid;
+    background-color: white;
     margin: 5px;
+    z-index: 20;
 
 }
 .container {
@@ -55,7 +57,8 @@ $grid-breakpoints: (
 
 }
 #nav-icon {
-    width: 60px;
+    height: 50px;
+    width: 50px;
 }
 
 #feed-profile-pic {
@@ -68,6 +71,8 @@ $grid-breakpoints: (
      margin-top: 0.0em; margin-bottom: 0em; 
 }
 #feed-picture {
+    max-height: 450px;
+    object-fit: cover;
     width: 100%;
 }
 #find-friends-picutre {
@@ -119,18 +124,29 @@ $grid-breakpoints: (
 .bg-danger > *{
     font-size: 1rem;
 }
-
+#logo-header {
+    height: 50px;
+    width: 50px;
+}
 .container-search {
-    margin-top: -250px;
+    display: none;
+    justify-content: center;
+    margin-top: -50px;
+    width: 426px;
     background-color: blue;
     z-index: 2;
     position: fixed;
+    padding: 15px;
+    max-height: 600px;
+    overflow-y:scroll;
+    
 
     
 }
 @media screen and (min-width: 800px){
     .sticky-top { top: 0.5em; }
-.positioning {top: 103px;}
+.positioning {top: 103px;
+}
 }
 @media screen and (max-width: 990px) {
     .testing {

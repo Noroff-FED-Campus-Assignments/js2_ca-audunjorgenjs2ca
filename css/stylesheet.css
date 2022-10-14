@@ -10781,8 +10781,10 @@ body, html {
 }
 
 .head {
-  background-color: #0A66C2;
+  border: solid;
+  background-color: white;
   margin: 5px;
+  z-index: 20;
 }
 
 .container {
@@ -10807,7 +10809,8 @@ body, html {
 }
 
 #nav-icon {
-  width: 60px;
+  height: 50px;
+  width: 50px;
 }
 
 #feed-profile-pic {
@@ -10823,6 +10826,8 @@ body, html {
 }
 
 #feed-picture {
+  max-height: 450px;
+  object-fit: cover;
   width: 100%;
 }
 
@@ -10879,11 +10884,22 @@ body, html {
   font-size: 1rem;
 }
 
+#logo-header {
+  height: 50px;
+  width: 50px;
+}
+
 .container-search {
-  margin-top: -250px;
+  display: none;
+  justify-content: center;
+  margin-top: -50px;
+  width: 426px;
   background-color: blue;
   z-index: 2;
   position: fixed;
+  padding: 15px;
+  max-height: 600px;
+  overflow-y: scroll;
 }
 
 @media screen and (min-width: 800px) {

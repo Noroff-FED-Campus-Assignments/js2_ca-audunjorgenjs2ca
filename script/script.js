@@ -1,21 +1,18 @@
-var removeClass = document.querySelector(".testing");
 
-window.onresize = function () {
-  console.log("test");
-  if (window.innerWidth <= 990)
-    removeClass.classList.add("flex-column-reverse");
-  else removeClass.classList.remove("flex-column-reverse");
-};
+
 const token = localStorage.getItem("accessToken");
 const user_name = localStorage.getItem("username");
 const email = localStorage.getItem("email");
 console.log(user_name);
-const container = document.querySelector(".container-content");
+const container = document.querySelector(".container-feed");
 const url = "https://nf-api.onrender.com/api/v1";
 
 const DOMUsername = document.querySelector(".user_name");
-
+const DOMAvatarPost = document.querySelector("#avatar-img-post");
+const DOMUsernamePost = document.querySelector(".name-post");
+DOMUsernamePost.innerHTML =user_name;
 DOMUsername.innerHTML = user_name;
+
 const DOMAvatar = document.querySelector("#avatar-img");
 DOMAvatar.innerHTML = `<img src="/img/profile.jfif" id="profile-picture" "id="profile-picture">`
 const DOMFollowers = document.querySelector("#follower-count");
@@ -40,6 +37,7 @@ async function getProfile() {
     let avatar = result.avatar;
     DOMAvatar.innerHTML = `<img src="${result.avatar}" onerror="this.src = '/img/profile.jfif';" id="profile-picture" "id="profile-picture" />`;
     console.log(result._count.followers);
+    DOMAvatarPost.innerHTML = `<img src="${result.avatar}" onerror="this.src = '/img/profile.jfif';" id="feed-profile-pic" "id="feed-profile-pic" />`;
     DOMFollowers.innerHTML = `${result._count.followers} followers`;
     DOMFollowing.innerHTML = `${result._count.following} following`;
   } catch (e) {}
@@ -121,6 +119,12 @@ ${icon}
         displayComments(postID);
       });
     }
+    const btn_post = document.querySelector(".input_btn_submit");
+
+btn_post.addEventListener("click", (e)=> {
+  e.preventDefault();
+  createEntry("/social/posts");
+});
    
     }
 
@@ -316,15 +320,16 @@ function deletePost(postid) {
     })
     .catch(error => console.log("error",  error));
   }
-
+const DOMFindfriends = document.querySelector(".friends-container");
   async function findFriends() {
+    let matched;
     try{
-      const DOMFindfriends = document.querySelector(".friends-container");
+      
       const response = await fetch(`${url}/social/profiles?_followers=true`, options);
       const result = await response.json();
-      console.log(result);
+     // console.log(result);
       console.log("før");
-      let matched;
+
       //console.log(result[0].follwers[0].name);
       console.log("etter");
       for( let i = 0; i < result.length; i++) {
@@ -332,25 +337,22 @@ function deletePost(postid) {
        // console.log(result[i].followers.length);
     
         for(let j = 0; j < result[i].followers.length; j++) {
-          console.log(matched);
-          console.log(result[i].followers[j].name);
+
           matched = false;
               if(result[i].followers[j].name === user_name) {
                   //console.log(result[i].followers[j].name);
                   matched = true;
-                console.log("inneeeeeeee");
+
                 //console.log(matched);
               }else {
                   matched = false;
                 }
                 //console.log(result[i].name);
-                console.log(matched);
-                console.log(result[i].name);
+
 
         }
         if(!matched) {
-          console.log(result[i].name);
-          console.log("test");
+
             DOMFindfriends.innerHTML += `<div class="d-flex find-friends m-1">
             <div class="p-2">
               <img src="${result[i].avatar}"  onerror="this.src = '/img/profile.jfif';" id="find-friends-picutre">
@@ -361,9 +363,7 @@ function deletePost(postid) {
             </div>
             <button class="m-2 btn btn-info btnConnect" id="${result[i].name}">Connect</button>
           </div>`;
-          if(i > 20) {
-            break;
-          }
+
           
          
         }
@@ -395,12 +395,9 @@ function followUser(followName) {
     method: 'PUT', 
     headers: {
       Authorization: `Bearer ${token}`,
-      'content-Type': 'application/json',
+
     },
     //data in the body
-    body: JSON.stringify( {
-      name : followName,
-    })
 
   })
     .then((response) => {
@@ -418,6 +415,9 @@ function followUser(followName) {
 catch(e) {
       console.log(e);
     } finally {
+      DOMFindfriends.innerHTML  ="";
+        getProfile();
+      findFriends();
     } 
 
     
@@ -430,8 +430,11 @@ inputSearch.addEventListener("keyup", () => {
   console.log(inputSearch.value);
   apiSearch(inputSearch.value);
 });
-let searchArray = [];
+
 async function apiSearch(searchWord) {
+  const search_container = document.querySelector(".container-search");
+  let searchArray = [];
+  let searchID = [];
   try {
     
     const response = await fetch(
@@ -439,66 +442,104 @@ async function apiSearch(searchWord) {
       options
     );
     const result = await response.json();
-    console.log(result);
-    for (let i = 0; i < result.length; i++) {
-      let avatar = result[i].author.avatar;
-      console.log(searchWord.length);
-      console.log(result[i].title);
-      if (result[i].author.avatar === "") {
-        avatar = `/img/profile.jfif"`;
-      }
-      console.log(result[i].title);
-      if(result[i].title === searchWord) {
-        console.log("FUNNET");
-        searchArray.push(result[i]);
-        if( i === 3) {
-          break;
-        }
-      } else {
-        //searchArray = [];
-      }
+    for(let i = 0; i <result.length; i++) {
+      searchArray.push(result[i]);
+    
+    
       
-     
     }
+    
   } catch (e) {
+    console.log(e);
   } finally {
-    console.log(searchArray);
-    const search_container = document.querySelector(".container-search");
-   console.log(searchArray.length);
-   for(let i = 0; i <searchArray.length; i++) {
-   search_container.innerHTML += 
-
-    `<div class="feed-content rounded" id="post_${searchArray[i].id}">
-    <div class="d-flex justify-content-between">
-    <div class="content-left d-flex">
-    <img src="${searchArray[i].author.avatar}" onerror="this.src = '/img/profile.jfif';" id="feed-profile-pic" />
+    if(searchWord.length > 2) {
+          const searchResult = getValue(searchWord, searchArray);
+    search_container.innerHTML = "";
+    for(let i = 0; i < searchResult.length; i++) {
+      console.log(searchResult[i]);
+      search_container.style.display="block";
+      search_container.innerHTML +=  `<div class="feed-content rounded" id="post_${searchResult[i].id}">
+      <div class="d-flex justify-content-between">
+      <div class="content-left d-flex">
+      <img src="${searchResult[i].author.avatar}" onerror="this.src = '/img/profile.jfif';" id="feed-profile-pic" />
 <div class="div">
-<p class="text-start p-feed ms-3">${searchArray[i].author.name}</p>
+<p class="text-start p-feed ms-3">${searchResult[i].author.name}</p>
 <p class="text-start p-feed ms-3">Front-end developer</p>
 </div>
-    </div>
-    <div class="content-right">
-           
+      </div>
+      <div class="content-right">
+             
 <div class="align-self-end"">
 </div>
-    </div>
+      </div>
 
 </div>
-    <h5 class="text-start">${searchArray[i].title}</h5>
-    <p class="text-start">${searchArray[i].body}</p>
-    <img src="${searchArray[i].media}" id="feed-picture">
+      <h5 class="text-start">${searchResult[i].title}</h5>
+      <p class="text-start">${searchResult[i].body}</p>
+      <img src="${searchResult[i].media}" id="feed-picture">
 
-    <div class="text-end">
-    <p class="view_comments" id="${searchArray[i].id}">${searchArray[i]._count.comments} comments</p>
+      <div class="text-end">
+      <p class="view_comments" id="${searchResult[i].id}">${searchResult[i]._count.comments} comments</p>
 
-    </div>
-    <span id ="comment_${searchArray[i].id}"></span>
-    </div>`;
-}
+      </div>
+      <span id ="comment_${searchResult[i].id}"></span>
+      </div>`;
+    }
+    } else {
+      search_container.innerHTML ="";
+      search_container.style.display="none";
+    }
 
    }
     
   
 }
+
+function getValue(searchText, searchArray) {
+  const localData = [...searchArray];
+  function getValueLogic(data, searchText) {
+    const arr = [];
+    if (data && Array.isArray(data)) {
+      for (let i = 0; i < data.length; i++) {
+        const ele = data[i];
+        ele && ele.title.toUpperCase().includes(searchText.toUpperCase())
+          ? arr.push(ele)
+          : arr.push(...getValueLogic(ele.items, searchText));
+      }
+    }
+    return arr;
+  }
+  return getValueLogic(localData, searchText);
+}
+
+async function createEntry(endpoint) {
+  try {
+    const inputHeadline = document.querySelector(".input_headline").value;
+    const inputBody = document.querySelector(".input_body").value;
+    const inputImage = document.querySelector(".input_image").value;
+    const entry = {
+      title: inputHeadline,
+      body: inputBody,
+      media: inputImage,
+    };
+    const request = await fetch(`${url}${endpoint}`, {
+      method: "POST",
+      headers: {
+        "content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(entry),
+    });
+    const results = await request.json();
+    console.log("This is the " + results);
+  } catch (e) {
+    console.log(e);
+  }
+  finally {
+    container.innerHTML = "";
+    handleAPI();
+  }
+}
+
 
 

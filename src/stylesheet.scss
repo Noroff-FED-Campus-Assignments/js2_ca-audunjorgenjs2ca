@@ -1,19 +1,23 @@
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
-body, html {
+body,
+html {
 
-    margin:0;
-    padding:0;
-    background-color: #E8E8E8; 
+    margin: 0;
+    padding: 0;
+    background-color: #E8E8E8;
 }
+
 .col {
 
     margin: 5px;
 }
+
 .test {
     background-color: white;
 
 }
+
 .feed-content {
     background-color: white;
 }
@@ -22,6 +26,7 @@ body, html {
     background-color: white;
     width: 300px;
 }
+
 .head {
     border: solid;
     background-color: white;
@@ -29,34 +34,83 @@ body, html {
     z-index: 20;
 
 }
+
 .container {
     margin-top: 0px;
     padding-top: 0px;
 }
 
 $grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
 );
+
 #forsidebilde {
     object-fit: cover;
-    height: 40%;
-    max-height: 250px;
+    height: 10%;
+    max-height: 200px;
     width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
-#profile-picture {
-    z-index: 10;
-    margin-top: -50px;
-    object-fit: cover;
-    width: 100px;
-    height: 100px;
+
+.profile_name{
+    display:flex;
+    justify-content: flex-start;
+    position: relative;
+    margin-top:50px;
+}
+.profile_name h1{
+    margin-left: 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.no_show{
+    display:none;
+}
+
+.edit_profile{
+    width:40px;
+    position:absolute;
+    left:82px;
+    padding: 5px;
     border-radius:50%;
+    border: solid 2px gray;
+    bottom: -15px;
+}
+
+.profile-container{
+    position: relative;
+    border-radius: 5px;
+}
+
+.profile-box{
+    border-radius: 50px;
+}
+
+#profile-picture {
+    border-radius: 50%;
+    position:absolute;
+    max-width:150px;
+    margin-left: 25px;
+    bottom: -35px;   
+    border: solid 3px white;
+    cursor: pointer;
+    
+    // z-index: 10;
+    // margin-top: -50px;
+    // object-fit: cover;
+    // width: 100px;
+    // height: 100px;
+    // border-radius: 50%;
 
 }
+
 #nav-icon {
     height: 50px;
     width: 50px;
@@ -66,35 +120,44 @@ $grid-breakpoints: (
     object-fit: cover;
     width: 50px;
     height: 50px;
-    border-radius:50%;
+    border-radius: 50%;
 }
+
 .p-feed {
-     margin-top: 0.0em; margin-bottom: 0em; 
+    margin-top: 0.0em;
+    margin-bottom: 0em;
 }
+
 #feed-picture {
     max-height: 450px;
     object-fit: cover;
     width: 100%;
 }
+
 #find-friends-picutre {
     object-fit: cover;
     width: 50px;
     height: 50px;
-    border-radius:50%;
+    border-radius: 50%;
 }
+
 .input-post {
     width: 80%;
 }
+
 #input-post {
     width: 100%;
 }
+
 .find-friends {
     border: solid;
     height: 70px;
 }
+
 .find-friends p {
     font-size: 12px;
 }
+
 .p-2 {
     margin-top: 0;
 }
@@ -102,26 +165,27 @@ $grid-breakpoints: (
 .post-comment {
     background-color: #ECECEC;
 }
+
 .username {
     display: none;
 }
 
-.remove_btn{
-    display:none
+.remove_btn {
+    display: none
 }
 
-.acc_created_success{
-    color:white;
+.acc_created_success {
+    color: white;
 
 }
 
-.bg-danger{
+.bg-danger {
     margin: 10px;
-    color:white;
+    color: white;
 
 }
 
-.bg-danger > *{
+.bg-danger>* {
     font-size: 1rem;
 }
 
@@ -129,8 +193,6 @@ $grid-breakpoints: (
     height: 50px;
     width: 50px;
 }
-=======
-
 
 .container-search {
     display: none;
@@ -143,26 +205,27 @@ $grid-breakpoints: (
 
     padding: 15px;
     max-height: 600px;
-    overflow-y:scroll;
-    
-
-    
+    overflow-y: scroll;
 
 }
 
 
 
 
-@media screen and (min-width: 800px){
-    .sticky-top { top: 0.5em; }
-.positioning {top: 103px;
+@media screen and (min-width: 800px) {
+    .sticky-top {
+        top: 0.5em;
+    }
+
+    .positioning {
+        top: 103px;
+    }
 }
-}
+
 @media screen and (max-width: 990px) {
     .testing {
         display: flex;
         flex-direction: column-reverse;
-        
+
     }
 }
-

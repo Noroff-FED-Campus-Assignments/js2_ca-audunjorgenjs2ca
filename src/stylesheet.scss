@@ -20,6 +20,7 @@ body, html {
 
 .friends-container {
     background-color: white;
+    width: 300px;
 }
 .head {
     background-color: #0A66C2;
@@ -125,9 +126,10 @@ $grid-breakpoints: (
     background-color: blue;
     z-index: 2;
     position: fixed;
-
-    
 }
+
+
+
 
 @media screen and (min-width: 800px){
     .sticky-top { top: 0.5em; }
@@ -140,3 +142,4 @@ $grid-breakpoints: (
         
     }
 }
+

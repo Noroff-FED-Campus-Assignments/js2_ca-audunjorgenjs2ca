@@ -500,5 +500,3 @@ async function apiSearch(searchWord) {
     
   
 }
-
-

@@ -10778,6 +10778,7 @@ body, html {
 
 .friends-container {
   background-color: white;
+  width: 300px;
 }
 
 .head {
@@ -10878,7 +10879,6 @@ body, html {
 .bg-danger > * {
   font-size: 1rem;
 }
-
 
 .container-search {
   margin-top: -250px;

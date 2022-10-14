@@ -20,6 +20,7 @@ body, html {
 
 .friends-container {
     background-color: white;
+    width: 300px;
 }
 .head {
     border: solid;
@@ -118,16 +119,19 @@ $grid-breakpoints: (
     margin: 10px;
     color:white;
 
-
 }
 
 .bg-danger > *{
     font-size: 1rem;
 }
+
 #logo-header {
     height: 50px;
     width: 50px;
 }
+=======
+
+
 .container-search {
     display: none;
     justify-content: center;
@@ -136,13 +140,19 @@ $grid-breakpoints: (
     background-color: blue;
     z-index: 2;
     position: fixed;
+
     padding: 15px;
     max-height: 600px;
     overflow-y:scroll;
     
 
     
+
 }
+
+
+
+
 @media screen and (min-width: 800px){
     .sticky-top { top: 0.5em; }
 .positioning {top: 103px;
@@ -155,3 +165,4 @@ $grid-breakpoints: (
         
     }
 }
+

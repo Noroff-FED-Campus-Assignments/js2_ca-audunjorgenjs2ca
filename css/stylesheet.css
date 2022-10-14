@@ -10778,6 +10778,7 @@ body, html {
 
 .friends-container {
   background-color: white;
+  width: 300px;
 }
 
 .head {

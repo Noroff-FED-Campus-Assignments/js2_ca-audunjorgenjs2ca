@@ -493,6 +493,7 @@ async function apiSearch(searchWord) {
    }
     
   
+
 }
 
 function getValue(searchText, searchArray) {

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/stylesheet.css">
-
+    <script defer src="./script/profile.js"></script>
     <title>Homepage</title>
   </head>
   <body>
@@ -20,29 +20,41 @@
             <div class="div text-start">
                  <img class="text-start"src="/img/profile.jfif" id="profile-picture">
             </div>
-            <h1>Ola Nordmann</h1>
-            <h2>Front-end developer</h2>
+
+            <h1 class="profile_name"></h1>
+
+            <table class="table table-striped table-sm">
+              <tbody>
+                <tr>
+                  <th scope="row">Email: </th>
+                  <td class="bio_email"></td>
+                </tr>
+                <tr>
+                  <th scope="row">No Posts: </th>
+                  <td class="bio_no_posts"></td>
+                </tr>
+                <tr>
+                  <th scope="row">Followers: </th>
+                  <td class="bio_followers"></td>
+                </tr>
+                <tr>
+                  <th scope="row">Following: </th>
+                  <td class="bio_follows"></td>
+                </tr>
+
+              </tbody>
+            </table>
+            <table class="table table-sm bio_table">
+              <tbody>
+
+
+
+            </tbody>
+          </table>
+
           </div>
   
           <div class="feed-content rounded">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex
-              laborum quidem minus esse doloribus! Quasi ducimus, cumque hic
-              facilis, quidem reiciendis necessitatibus labore laudantium
-              deserunt nisi modi repudiandae eius reprehenderit!
-            </p>
-          </div>
-          <div class="feed-content rounded">
-            <p class="text-start">NAME</p>
-            <p class="text-start">PROGRAMMER</p>
-            <p>CONTENT</p>
-            <p class="text-end">15 comments</p>
-          </div>
-          <div class="feed-content rounded">
-            <p class="text-start">NAME</p>
-            <p class="text-start">PROGRAMMER</p>
-            <p>CONTENT</p>
-            <p class="text-end">15 comments</p>
           </div>
           <div class="feed-content rounded">
             <p class="text-start">NAME</p>
@@ -52,21 +64,19 @@
           </div>
         </div>
         <div class="col col-lg-3">
-          <div class="friends-container rounded">
-            <h2>Find friends</h2>
-            <div class="d-flex">
-                <div class="p-2">
-                    <p>PERSON</p>
-                </div>
-                <div class="p2">
-                    <p>+CONNECT</p>
-                </div>
-            </div>
+          <div class="friends-container rounded d-flex flex-column min-300 overflow-auto h-50">
+            <h3>Friends list</h3>
+
+              
+
+
+
+            
           </div>
         </div>
       </div>
     </div>
-   <a href="/index.html"> <h1>Home</h1></a>
+   <a href="/feed.html"> <h1>Home</h1></a>
   </body>
-  <script src="/script/script.js"></script>
+  <!-- <script src="/script/script.js"></script> -->
 </html>

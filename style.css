@@ -1,0 +1,22 @@
+body {
+    margin: 0px;
+}
+.col {
+
+    margin: 5px;
+}
+.test {
+    background-color: red;
+    height: 300px;
+}
+.feed-content {
+    background-color: red;
+}
+
+.friends-container {
+    background-color: red;
+}
+.head {
+    background-color: red;
+    margin: 5px;
+}

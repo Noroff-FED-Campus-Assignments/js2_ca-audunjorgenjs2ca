@@ -5,68 +5,101 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/stylesheet.css">
-
-    <title>Homepage</title>
+    <link rel="icon" type="image/x-icon" href="/img/ff-logo.png">
+    <script type="module" src="./script/profile.mjs"></script>
+    <title>Profile</title>
   </head>
   <body>
+    <div class="gray-div">
+
+    </div>
     <div class="container text-center">
-        <div class="column head">header</div>
+      <div class="column head rounded sticky-top header">
+        <div class="d-flex justify-content-between bd-highlight mb-3 ">
+          <div class="search-one align-self-center">
+            <a href="feed.html"><div class="me-auto p-2 bd-highlight"><img src="/img/ff-logo.png" id="logo-header"></a>
+              
+          </div>  
+          </div>
+          <input class="input_search form-control" type="text" placeholder="search for spesific post">
+          <div class="search-two align-self-center">
+    
+
+          </div>
+          <div class="search-three d-flex">
+            <div class="p-2 bd-highlight">
+               <a href="feed.html"><img src="/img/home.png" id="nav-icon"/></a>
+          </div>
+          <div class="p-2 bd-highlight">
+          <img src="/img/chat-bubble.png" id="nav-icon" />
+          </div>
+        
+        <div class="p-2 bd-highlight">
+          <img src="/img/bell.png" id="nav-icon" />
+          </div>
+        
+        <div class="p-2 bd-highlight">
+          <a href="profile.html"><img class="border-bottom" src="/img/user-avatar.png" id="nav-icon" /></a>
+          </div>
+          </div>
+         
+          
+        </div>
+      </div>
+    <div class="container text-center">
       <div class="row testing">
-
-
         <div class="col">
-          <div class="feed-content rounded">
-            <img src="/img/forsidebilde.jpg" id="forsidebilde">
-            <div class="div text-start">
-                 <img class="text-start"src="/img/profile.jfif" id="profile-picture">
+          <div class="feed-content rounded profile-box">
+            <div class="banner-div">
+              <img src="/img/forsidebilde.jpg" id="forsidebilde">
             </div>
-            <h1>Ola Nordmann</h1>
-            <h2>Front-end developer</h2>
+            
+            <div class="div text-start profile-container">
+              <div class="profil-bilde-div">
+                <img class="text-start"src="/img/profile.jfif" id="profile-picture-profile">
+              </div>
+                 
+                <div class="modal-container">
+                  <div class="modal modal_no_show" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Change profile picture or banner</h5>
+                          <button type="button" class="close btn-close close_modal">
+                          </button>
+                        </div>
+                        <div class="modal-body d-flex flex-column">
+                          <input type="text" class="change_profile_pic my-3" placeholder="URL to new profile picture">
+                          <input type="text" class="change_profile_banner" placeholder="URL to new profile banner">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary change_media">Save changes</button>
+                          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="profile_info_container">
+              <h1 class="profile_name"></h1>
+            </div>
           </div>
   
-          <div class="feed-content rounded">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex
-              laborum quidem minus esse doloribus! Quasi ducimus, cumque hic
-              facilis, quidem reiciendis necessitatibus labore laudantium
-              deserunt nisi modi repudiandae eius reprehenderit!
-            </p>
+          <div class="feed-content rounded user_posts">
+            <h2>Posts</h2>
           </div>
-          <div class="feed-content rounded">
-            <p class="text-start">NAME</p>
-            <p class="text-start">PROGRAMMER</p>
-            <p>CONTENT</p>
-            <p class="text-end">15 comments</p>
-          </div>
-          <div class="feed-content rounded">
-            <p class="text-start">NAME</p>
-            <p class="text-start">PROGRAMMER</p>
-            <p>CONTENT</p>
-            <p class="text-end">15 comments</p>
-          </div>
-          <div class="feed-content rounded">
-            <p class="text-start">NAME</p>
-            <p class="text-start">PROGRAMMER</p>
-            <p>CONTENT</p>
-            <p class="text-end">15 comments</p>
-          </div>
+
         </div>
         <div class="col col-lg-3">
-          <div class="friends-container rounded">
-            <h2>Find friends</h2>
-            <div class="d-flex">
-                <div class="p-2">
-                    <p>PERSON</p>
-                </div>
-                <div class="p2">
-                    <p>+CONNECT</p>
-                </div>
-            </div>
+          <div class="friends-container rounded d-flex flex-column min-300 overflow-auto h-50">
+            <h3>Friends list</h3>
           </div>
         </div>
       </div>
     </div>
-   <a href="/index.html"> <h1>Home</h1></a>
+   <a href="/feed.html"> <h1>Home</h1></a>
   </body>
-  <script src="/script/script.js"></script>
+  <!-- <script src="/script/script.js"></script> -->
 </html>

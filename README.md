@@ -1,5 +1,8 @@
 # Course Assignment Javascript 2
+#
+This is our link to our Trello board:
 
+https://trello.com/b/dJFo7crJ/javascript-2-courseassignment
 ## Goal
 
 To apply knowledge of JavaScript techniques to implement the front end functionality for a social media application.

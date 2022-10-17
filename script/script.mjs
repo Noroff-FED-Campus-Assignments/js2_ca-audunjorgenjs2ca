@@ -184,7 +184,7 @@ async function displayComments(postid) {
     const btnPostComment = document.querySelector(`.btn_${postid}`);
     const commentInput = document.querySelector(`.input_${postid}`);
     btnPostComment.addEventListener("click", () => {
-      spesificPostID = postid;
+      const spesificPostID = postid;
       const bodyComment = commentInput.value;
       postComment(spesificPostID, bodyComment);
     });
@@ -457,7 +457,7 @@ async function apiSearch(searchWord) {
     console.log(e);
   } finally {
     if (searchWord.length > 2) {
-      const searchResult = getValue(searchWord, searchArray);
+      const searchResult = getResult(searchWord, searchArray);
       search_container.innerHTML = "";
 
       for (let i = 0; i < searchResult.length; i++) {
@@ -495,21 +495,21 @@ async function apiSearch(searchWord) {
   }
 }
 
-function getValue(searchText, searchArray) {
+function getResult(searchText, searchArray) {
   const localData = [...searchArray];
-  function getValueLogic(data, searchText) {
-    const arr = [];
+  function getResultLogic(data, searchText) {
+    const thisarray = [];
     if (data && Array.isArray(data)) {
       for (let i = 0; i < data.length; i++) {
         const ele = data[i];
         ele && ele.title.toUpperCase().includes(searchText.toUpperCase())
-          ? arr.push(ele)
-          : arr.push(...getValueLogic(ele.items, searchText));
+          ? thisarray.push(ele)
+          : thisarray.push(...getResultLogic(ele.items, searchText));
       }
     }
-    return arr;
+    return thisarray;
   }
-  return getValueLogic(localData, searchText);
+  return getResultLogic(localData, searchText);
 }
 
 async function createEntry(endpoint) {

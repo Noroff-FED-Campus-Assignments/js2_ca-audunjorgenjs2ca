@@ -4,7 +4,7 @@ const loginForm = document.querySelector(".login_form");
 const errorContainer = document.querySelector(".error_container");
 
 const baseUrl = "https://nf-api.onrender.com/api/v1";
-
+ localStorage.clear();
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const email = document.querySelector(".input_email").value;

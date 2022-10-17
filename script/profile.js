@@ -1,13 +1,16 @@
 const profileName = document.querySelector(".profile_name");
 const friendsContainer = document.querySelector(".friends-container");
-const bioEmail = document.querySelector(".bio_email")
-const bioNoPosts = document.querySelector(".bio_no_posts");
-const bioFollowers = document.querySelector(".bio_followers");
-const bioFollows = document.querySelector(".bio_follows");
-const bioTable  = document.querySelector(".bio_table");
+// const bioEmail = document.querySelector(".bio_email")
+// const bioNoPosts = document.querySelector(".bio_no_posts");
+// const bioFollowers = document.querySelector(".bio_followers");
+// const bioFollows = document.querySelector(".bio_follows");
+// const bioTable  = document.querySelector(".bio_table");
 const profilePicture = document.querySelector("#profile-picture");
 const editProfile = document.querySelector(".edit_profile");
 const banner = document.querySelector("#forsidebilde");
+const userPost = document.querySelector(".user_posts");
+const profileContainer = document.querySelector(".profile_info_container");
+
 
 
 
@@ -25,16 +28,12 @@ const header = {
 async function getUser(){
     const response = await fetch(baseUrl, header)
     const results = await response.json();
-    console.log(results)
-    bioEmail.innerHTML = `${results.email}`
-    bioNoPosts.innerHTML = `${results._count.posts}`
-    bioFollowers.innerHTML = `${results._count.followers}`
-    bioFollows.innerHTML = `${results._count.following}`
+    profileContainer.innerHTML += `<p>Email: ${results.email}</p>`
+    profileContainer.innerHTML += `<p>No. Posts: ${results._count.posts}</p>`
+    profileContainer.innerHTML += `<p>Followers: ${results._count.followers}</p>`
+    profileContainer.innerHTML += `<p>Following:${results._count.following}`
     profilePicture.src = `${results.avatar}`
     banner.src = `${results.banner}`
-
-    
-
 }
 
 getUser();
@@ -45,6 +44,8 @@ async function getUserInfo(endpoint){
         const response = await fetch(`${baseUrl}${endpoint}`, header);
         const results = await response.json();
         const following = results.following
+        // console.log(results.posts)
+        const posts = results.posts
         
         for (let i = 0; i< following.length; i++){
             friendsContainer.innerHTML += `
@@ -55,11 +56,27 @@ async function getUserInfo(endpoint){
     
                                             `
         } 
+
+        for (let i = 0; i < posts.length; i++){
+            console.log(posts.length)
+            userPost.innerHTML += `
+                                    <div class="user_posts">
+                                        <h4>${posts[i].title}</h4>
+                                        <p>Created:</p>
+                                        <p>${posts[i].created}</p>
+                                        <div class="user_post_img">
+                                            <img src=${posts[i].media}>
+                                        </div>
+                                        <p>${posts[i].body}</p>
+                                        <hr>
+                                    </div>`
+
+        }
+
     }catch(e){
         console.log(e)
     }finally{
         const following = document.querySelectorAll(".btn_unfollow");
-        // console.log(following)
         for (let i =0; i < following.length; i++){
             following[i].addEventListener("click", () =>{
             unfollowUser(event.target.id);
@@ -70,6 +87,7 @@ async function getUserInfo(endpoint){
 
 getUserInfo("?_posts=true&_following=true&_followers=true");
 
+console.log("after funk")
 async function unfollowUser (name) {
     try{
         const response = await fetch(`https://nf-api.onrender.com/api/v1/social/profiles/${name}/unfollow`,{
@@ -89,6 +107,8 @@ async function unfollowUser (name) {
 }
 
 
+const modal = document.querySelector(".modal");
+const closeModal = document.querySelector(".close_modal");
 
 profilePicture.addEventListener('mouseover', (event) => {
     editProfile.classList.remove("no_show");
@@ -96,6 +116,70 @@ profilePicture.addEventListener('mouseover', (event) => {
 profilePicture.addEventListener('mouseout', (event) => {
     editProfile.classList.add("no_show")
 });
+
+closeModal.addEventListener("click", () =>{
+    modal.classList.add("modal_no_show");
+    
+})
+
+profilePicture.addEventListener("click", () =>{
+    modal.classList.remove("modal_no_show")
+})
+
+window.onclick = (e) => {
+    if (e.target === modal) {
+      modal.classList.add("modal_no_show");
+    }
+};
+
+
+//--------------------SET NEW PROFILE OR BANNER IMG-----------------------
+
+const changeMedia = document.querySelector(".change_media");
+
+changeMedia.addEventListener("click", (e) => {
+    e.preventDefault();
+    const changeProfileImg = document.querySelector(".change_profile_pic").value;
+    const changeProfileBanner = document.querySelector(".change_profile_banner").value;
+
+    const userInput = {
+      banner: changeProfileBanner,
+      avatar: changeProfileImg,
+    
+    };
+    // console.log(email, password, userName);
+  
+    async function changeMedia(endpoint) {
+      try {
+        const request = await fetch(`${baseUrl}${endpoint}`, {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+
+          },
+          body: JSON.stringify(userInput),
+        });
+        const results = await request.json();
+        console.log(request)
+
+        if (request.status === 200){
+            location.reload();
+
+        }else{
+            alert("Please enter a valid URL")
+        }
+        
+        } catch (e) {
+        console.log(e);
+      }
+    }
+    changeMedia("/media");
+});
+
+
+
 
 
 

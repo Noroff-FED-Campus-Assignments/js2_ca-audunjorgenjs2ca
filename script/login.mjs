@@ -67,6 +67,7 @@ createAccNextForm.addEventListener("submit", (e) => {
   const email = document.querySelector(".input_email").value;
   const password = document.querySelector(".input_password").value;
   const userName = document.querySelector(".input_username").value;
+  
   const user = {
     name: userName,
     email: email,

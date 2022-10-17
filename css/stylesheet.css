@@ -10971,8 +10971,7 @@ html {
 }
 
 .user_post_img img {
-  width: 700px;
-  height: 300px;
+  max-height: 300px;
   object-fit: contain;
 }
 
